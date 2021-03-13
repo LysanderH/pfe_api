@@ -3,6 +3,8 @@
 use App\Http\Controllers\ApiExercisesController;
 use App\Http\Controllers\ApiLoginController;
 use App\Http\Controllers\ApiRegisterController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ExerciseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,13 +23,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::get('/', function () {
-//     return ['hello' => 'world'];
-// });
+Route::get('/', function () {
+    return ['hello' => 'world'];
+});
+
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get(
         '/me',
-        function (Request $request) {
+        function () {
             return auth()->user();
         }
     );
@@ -36,4 +39,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 Route::post('/auth/login', [ApiLoginController::class, 'login'])->name('login');
 Route::post('/auth/register', [ApiRegisterController::class, 'register'])->name('register');
-Route::get('/exercises', [ApiExercisesController::class, 'show']);
+Route::resource('exercises', ExerciseController::class);
+Route::resource('courses', CourseController::class);
