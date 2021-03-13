@@ -21,10 +21,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/', function () {
-    return ['hello' => 'world'];
+// Route::get('/', function () {
+//     return ['hello' => 'world'];
+// });
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get(
+        '/me',
+        function (Request $request) {
+            return auth()->user();
+        }
+    );
+    Route::post('/auth/logout', [ApiLoginController::class, 'logout']);
 });
 
-Route::post('/login', [ApiLoginController::class, 'login']);
-Route::post('/register', [ApiRegisterController::class, 'register']);
+Route::post('/auth/login', [ApiLoginController::class, 'login'])->name('login');
+Route::post('/auth/register', [ApiRegisterController::class, 'register'])->name('register');
 Route::get('/exercises', [ApiExercisesController::class, 'show']);
