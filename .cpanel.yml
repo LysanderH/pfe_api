@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/lysasphm/cta.lysander-hans.com/
+    - /bin/cp -a ./. $DEPLOYPATH
