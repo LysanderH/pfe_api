@@ -18,6 +18,11 @@ class Exercise extends Model
         return $this->belongsToMany(Courses::class);
     }
 
+    public function tactics()
+    {
+        return $this->belongsToMany(Tactic::class);
+    }
+
     public function users()
     {
         return $this->belongsToMany(User::class);
