@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateExercisesTacticsTable extends Migration
+class CreateRoomsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateExercisesTacticsTable extends Migration
      */
     public function up()
     {
-        Schema::create('exercises_tactics', function (Blueprint $table) {
-            $table->foreignId('exercise_id')->constrained('exercises');
-            $table->foreignId('tactic_id')->constrained('tactics');
+        Schema::create('rooms', function (Blueprint $table) {
+            $table->id();
+            $table->boolean('is_active');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +27,6 @@ class CreateExercisesTacticsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exercises_tactics');
+        Schema::dropIfExists('rooms');
     }
 }

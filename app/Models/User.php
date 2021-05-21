@@ -44,7 +44,7 @@ class User extends Authenticatable
 
     public function exercises()
     {
-        return $this->belongsToMany(Exercise::class);
+        return $this->hasMany(Exercise::class);
     }
 
     public function courses()

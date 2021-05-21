@@ -28,10 +28,10 @@ class ApiLoginController extends Controller
 
     public function logout()
     {
-        auth()->user()->tokens()->delete();
+        Auth::user()->tokens->each(function ($token, $key) {
+            $token->delete();
+        });
 
-        return [
-            'message' => 'Tokens Revoked'
-        ];
+        return response()->json(Auth::user());
     }
 }

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Exercise;
+use App\Models\Tactic;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class ExerciseController extends Controller
@@ -12,9 +15,22 @@ class ExerciseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->tactic) {
+            $tactic = $request->tactic;
+            $exercises = Exercise::where('user_id', $request->user()->id)->whereHas('tactics', function (Builder $query) use ($tactic) {
+                $query->where('name', $tactic);
+            })->orderBy('created_at')->paginate(20);
+        } else {
+            $exercises = Exercise::where('user_id', $request->user()->id)->orderBy('created_at')->paginate(20);
+        }
+        $tactics = Tactic::orderBy('name')->get();
+
+        return response()->json([
+            'exercises' => $exercises,
+            'tactics' => $tactics
+        ]);
     }
 
     /**
@@ -24,7 +40,11 @@ class ExerciseController extends Controller
      */
     public function create()
     {
-        //
+        $tactics = Tactic::orderBy('name')->get();
+
+        return response()->json([
+            'tactics' => $tactics
+        ]);
     }
 
     /**

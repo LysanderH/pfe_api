@@ -19,6 +19,7 @@ class CreateExercisesTable extends Migration
             $table->longText('description');
             $table->integer('difficulty');
             $table->json('content');
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
