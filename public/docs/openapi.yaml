@@ -1,0 +1,1178 @@
+openapi: 3.0.3
+info:
+    title: 'Chess Teaching Tool'
+    description: 'This api provides the data for the application Chess Teaching Tool'
+    version: 1.0.0
+servers:
+    -
+        url: 'https://api.loalhost'
+paths:
+    /api/auth/logout:
+        post:
+            summary: 'Logout a user'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Authorization
+                    description: ''
+                    example: 'Bearer USER_TOKEN'
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - 'Auth endpoints'
+    /api/sanctum/register:
+        post:
+            summary: 'Register a user'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example: {  }
+                                properties: {  }
+            tags:
+                - 'Auth endpoints'
+            requestBody:
+                required: false
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                name:
+                                    type: required
+                                    description: 'The name of the user.'
+                                    example: enim
+                                email:
+                                    type: required
+                                    description: 'The email of the user.'
+                                    example: qui
+                                password:
+                                    type: required
+                                    description: 'The password of the user.'
+                                    example: et
+                                password_confirmation:
+                                    type: required
+                                    description: 'The confirmation password of the user.'
+                                    example: beatae
+                                device_name:
+                                    type: required
+                                    description: 'The device name.'
+                                    example: nisi
+            security: []
+    /api/sanctum/login:
+        post:
+            summary: 'Authenticate a user'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200'
+                    content:
+                        text/plain:
+                            schema:
+                                type: string
+                                example: "{\n     data: \"2|qQpZb2sWHmBtvCflqx4sKBugfbW8zKrYMcAOCpAL\",\n     status: 200,\n     statusText: \"OK\",\n     headers: {…},\n     config: {…},\n}"
+            tags:
+                - 'Auth endpoints'
+            requestBody:
+                required: false
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                email:
+                                    type: required
+                                    description: ''
+                                    example: fugiat
+                                password:
+                                    type: required
+                                    description: ''
+                                    example: qui
+                                device_name:
+                                    type: required
+                                    description: ''
+                                    example: quos
+            security: []
+    /sanctum/csrf-cookie:
+        get:
+            summary: 'Return an empty response simply to trigger the storage of the CSRF cookie in the browser.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+    /broadcasting/auth:
+        get:
+            summary: 'Authenticate the request for channel access.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                403:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: ''
+                                    exception: Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
+                                    file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Broadcasting\Broadcasters\PusherBroadcaster.php'
+                                    line: 49
+                                    trace: [{ file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Broadcasting\BroadcastManager.php', line: 381, function: auth, class: Illuminate\Broadcasting\Broadcasters\PusherBroadcaster, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php', line: 261, function: __call, class: Illuminate\Broadcasting\BroadcastManager, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Broadcasting\BroadcastController.php', line: 23, function: __callStatic, class: Illuminate\Support\Facades\Facade, type: '::' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Routing\Controller.php', line: 54, function: authenticate, class: Illuminate\Broadcasting\BroadcastController, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php', line: 45, function: callAction, class: Illuminate\Routing\Controller, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Routing\Route.php', line: 254, function: dispatch, class: Illuminate\Routing\ControllerDispatcher, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Routing\Route.php', line: 197, function: runController, class: Illuminate\Routing\Route, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 695, function: run, class: Illuminate\Routing\Route, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 128, function: 'Illuminate\Routing\{closure}', class: Illuminate\Routing\Router, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php', line: 50, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Routing\Middleware\SubstituteBindings, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\View\Middleware\ShareErrorsFromSession.php', line: 49, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\View\Middleware\ShareErrorsFromSession, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php', line: 121, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php', line: 64, function: handleStatefulRequest, class: Illuminate\Session\Middleware\StartSession, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Session\Middleware\StartSession, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse.php', line: 37, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\EncryptCookies.php', line: 67, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Cookie\Middleware\EncryptCookies, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 697, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 672, function: runRouteWithinStack, class: Illuminate\Routing\Router, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 636, function: runRoute, class: Illuminate\Routing\Router, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 625, function: dispatchToRoute, class: Illuminate\Routing\Router, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 166, function: dispatch, class: Illuminate\Routing\Router, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 128, function: 'Illuminate\Foundation\Http\{closure}', class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php', line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php', line: 31, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php', line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php', line: 40, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TrimStrings, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php', line: 27, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\ValidatePostSize, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php', line: 86, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance, type: '->' }, { file: 'E:\PFE\dev\api\vendor\fruitcake\laravel-cors\src\HandleCors.php', line: 38, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Fruitcake\Cors\HandleCors, type: '->' }, { file: 'E:\PFE\dev\api\vendor\fideloper\proxy\src\TrustProxies.php', line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Fideloper\Proxy\TrustProxies, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 141, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 110, function: sendRequestThroughRouter, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'E:\PFE\dev\api\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 324, function: handle, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'E:\PFE\dev\api\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 305, function: callLaravelOrLumenRoute, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'E:\PFE\dev\api\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 76, function: makeApiCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'E:\PFE\dev\api\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 51, function: makeResponseCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'E:\PFE\dev\api\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 41, function: makeResponseCallIfEnabledAndNoSuccessResponses, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'E:\PFE\dev\api\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 236, function: __invoke, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'E:\PFE\dev\api\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 172, function: iterateThroughStrategies, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'E:\PFE\dev\api\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 127, function: fetchResponses, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'E:\PFE\dev\api\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php', line: 119, function: processRoute, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'E:\PFE\dev\api\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php', line: 73, function: processRoutes, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 36, function: handle, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Container\Util.php', line: 40, function: 'Illuminate\Container\{closure}', class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 93, function: unwrapIfClosure, class: Illuminate\Container\Util, type: '::' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 37, function: callBoundMethod, class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Container\Container.php', line: 614, function: call, class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Console\Command.php', line: 136, function: call, class: Illuminate\Container\Container, type: '->' }, { file: 'E:\PFE\dev\api\vendor\symfony\console\Command\Command.php', line: 256, function: execute, class: Illuminate\Console\Command, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Console\Command.php', line: 121, function: run, class: Symfony\Component\Console\Command\Command, type: '->' }, { file: 'E:\PFE\dev\api\vendor\symfony\console\Application.php', line: 971, function: run, class: Illuminate\Console\Command, type: '->' }, { file: 'E:\PFE\dev\api\vendor\symfony\console\Application.php', line: 290, function: doRunCommand, class: Symfony\Component\Console\Application, type: '->' }, { file: 'E:\PFE\dev\api\vendor\symfony\console\Application.php', line: 166, function: doRun, class: Symfony\Component\Console\Application, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Console\Application.php', line: 92, function: run, class: Symfony\Component\Console\Application, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php', line: 129, function: run, class: Illuminate\Console\Application, type: '->' }, { file: 'E:\PFE\dev\api\artisan', line: 37, function: handle, class: Illuminate\Foundation\Console\Kernel, type: '->' }]
+                                properties:
+                                    message: { type: string, example: '' }
+                                    exception: { type: string, example: Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException }
+                                    file: { type: string, example: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Broadcasting\Broadcasters\PusherBroadcaster.php' }
+                                    line: { type: integer, example: 49 }
+                                    trace: { type: array, example: [{ file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Broadcasting\BroadcastManager.php', line: 381, function: auth, class: Illuminate\Broadcasting\Broadcasters\PusherBroadcaster, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php', line: 261, function: __call, class: Illuminate\Broadcasting\BroadcastManager, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Broadcasting\BroadcastController.php', line: 23, function: __callStatic, class: Illuminate\Support\Facades\Facade, type: '::' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Routing\Controller.php', line: 54, function: authenticate, class: Illuminate\Broadcasting\BroadcastController, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php', line: 45, function: callAction, class: Illuminate\Routing\Controller, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Routing\Route.php', line: 254, function: dispatch, class: Illuminate\Routing\ControllerDispatcher, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Routing\Route.php', line: 197, function: runController, class: Illuminate\Routing\Route, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 695, function: run, class: Illuminate\Routing\Route, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 128, function: 'Illuminate\Routing\{closure}', class: Illuminate\Routing\Router, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php', line: 50, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Routing\Middleware\SubstituteBindings, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\View\Middleware\ShareErrorsFromSession.php', line: 49, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\View\Middleware\ShareErrorsFromSession, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php', line: 121, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php', line: 64, function: handleStatefulRequest, class: Illuminate\Session\Middleware\StartSession, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Session\Middleware\StartSession, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse.php', line: 37, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\EncryptCookies.php', line: 67, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Cookie\Middleware\EncryptCookies, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 697, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 672, function: runRouteWithinStack, class: Illuminate\Routing\Router, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 636, function: runRoute, class: Illuminate\Routing\Router, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Routing\Router.php', line: 625, function: dispatchToRoute, class: Illuminate\Routing\Router, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 166, function: dispatch, class: Illuminate\Routing\Router, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 128, function: 'Illuminate\Foundation\Http\{closure}', class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php', line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php', line: 31, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php', line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php', line: 40, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TrimStrings, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php', line: 27, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\ValidatePostSize, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php', line: 86, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance, type: '->' }, { file: 'E:\PFE\dev\api\vendor\fruitcake\laravel-cors\src\HandleCors.php', line: 38, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Fruitcake\Cors\HandleCors, type: '->' }, { file: 'E:\PFE\dev\api\vendor\fideloper\proxy\src\TrustProxies.php', line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 167, function: handle, class: Fideloper\Proxy\TrustProxies, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php', line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 141, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php', line: 110, function: sendRequestThroughRouter, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'E:\PFE\dev\api\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 324, function: handle, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: 'E:\PFE\dev\api\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 305, function: callLaravelOrLumenRoute, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'E:\PFE\dev\api\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 76, function: makeApiCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'E:\PFE\dev\api\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 51, function: makeResponseCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'E:\PFE\dev\api\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php', line: 41, function: makeResponseCallIfEnabledAndNoSuccessResponses, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'E:\PFE\dev\api\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 236, function: __invoke, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: 'E:\PFE\dev\api\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 172, function: iterateThroughStrategies, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'E:\PFE\dev\api\vendor\knuckleswtf\scribe\src\Extracting\Generator.php', line: 127, function: fetchResponses, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'E:\PFE\dev\api\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php', line: 119, function: processRoute, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: 'E:\PFE\dev\api\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php', line: 73, function: processRoutes, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 36, function: handle, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Container\Util.php', line: 40, function: 'Illuminate\Container\{closure}', class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 93, function: unwrapIfClosure, class: Illuminate\Container\Util, type: '::' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php', line: 37, function: callBoundMethod, class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Container\Container.php', line: 614, function: call, class: Illuminate\Container\BoundMethod, type: '::' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Console\Command.php', line: 136, function: call, class: Illuminate\Container\Container, type: '->' }, { file: 'E:\PFE\dev\api\vendor\symfony\console\Command\Command.php', line: 256, function: execute, class: Illuminate\Console\Command, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Console\Command.php', line: 121, function: run, class: Symfony\Component\Console\Command\Command, type: '->' }, { file: 'E:\PFE\dev\api\vendor\symfony\console\Application.php', line: 971, function: run, class: Illuminate\Console\Command, type: '->' }, { file: 'E:\PFE\dev\api\vendor\symfony\console\Application.php', line: 290, function: doRunCommand, class: Symfony\Component\Console\Application, type: '->' }, { file: 'E:\PFE\dev\api\vendor\symfony\console\Application.php', line: 166, function: doRun, class: Symfony\Component\Console\Application, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Console\Application.php', line: 92, function: run, class: Symfony\Component\Console\Application, type: '->' }, { file: 'E:\PFE\dev\api\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php', line: 129, function: run, class: Illuminate\Console\Application, type: '->' }, { file: 'E:\PFE\dev\api\artisan', line: 37, function: handle, class: Illuminate\Foundation\Console\Kernel, type: '->' }], items: { type: object } }
+            tags:
+                - Endpoints
+            security: []
+    /api/exercises:
+        get:
+            summary: 'Display a listing of the resource.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+        post:
+            summary: 'Store a newly created resource in storage.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+    /api/exercises/create:
+        get:
+            summary: 'Show the form for creating a new resource.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+    '/api/exercises/{exercise}':
+        get:
+            summary: 'Display the specified resource.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+        put:
+            summary: 'Update the specified resource in storage.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+        delete:
+            summary: 'Remove the specified resource from storage.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+        parameters:
+            -
+                in: path
+                name: exercise
+                description: ''
+                example: dolorem
+                required: true
+                schema:
+                    type: string
+    '/api/exercises/{exercise}/edit':
+        get:
+            summary: 'Show the form for editing the specified resource.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+        parameters:
+            -
+                in: path
+                name: exercise
+                description: ''
+                example: rerum
+                required: true
+                schema:
+                    type: string
+    /api/groups:
+        get:
+            summary: 'Display a listing of the resource.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+        post:
+            summary: 'Store a newly created resource in storage.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+    /api/groups/create:
+        get:
+            summary: 'Show the form for creating a new resource.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+    '/api/groups/{group}':
+        get:
+            summary: 'Display the specified resource.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+        put:
+            summary: 'Update the specified resource in storage.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+        delete:
+            summary: 'Remove the specified resource from storage.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+        parameters:
+            -
+                in: path
+                name: group
+                description: ''
+                example: explicabo
+                required: true
+                schema:
+                    type: string
+    '/api/groups/{group}/edit':
+        get:
+            summary: 'Show the form for editing the specified resource.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+        parameters:
+            -
+                in: path
+                name: group
+                description: ''
+                example: sint
+                required: true
+                schema:
+                    type: string
+    /api/courses:
+        get:
+            summary: 'Display a listing of the resource.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+        post:
+            summary: 'Store a newly created resource in storage.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+    /api/courses/create:
+        get:
+            summary: 'Show the form for creating a new resource.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+    '/api/courses/{course}':
+        get:
+            summary: 'Display the specified resource.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+        put:
+            summary: 'Update the specified resource in storage.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+        delete:
+            summary: 'Remove the specified resource from storage.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+        parameters:
+            -
+                in: path
+                name: course
+                description: ''
+                example: eos
+                required: true
+                schema:
+                    type: string
+    '/api/courses/{course}/edit':
+        get:
+            summary: 'Show the form for editing the specified resource.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+        parameters:
+            -
+                in: path
+                name: course
+                description: ''
+                example: perferendis
+                required: true
+                schema:
+                    type: string
+    /api/rooms:
+        get:
+            summary: 'Display a listing of the resource.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+        post:
+            summary: 'Store a newly created resource in storage.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+    /api/rooms/create:
+        get:
+            summary: 'Show the form for creating a new resource.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+    '/api/rooms/{room}':
+        get:
+            summary: 'Display the specified resource.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+        put:
+            summary: 'Update the specified resource in storage.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+        delete:
+            summary: 'Remove the specified resource from storage.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+        parameters:
+            -
+                in: path
+                name: room
+                description: ''
+                example: doloremque
+                required: true
+                schema:
+                    type: string
+    '/api/rooms/{room}/edit':
+        get:
+            summary: 'Show the form for editing the specified resource.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+        parameters:
+            -
+                in: path
+                name: room
+                description: ''
+                example: non
+                required: true
+                schema:
+                    type: string
+    '/api/rooms/connect/{id}':
+        get:
+            summary: ''
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+        parameters:
+            -
+                in: path
+                name: id
+                description: ''
+                example: maiores
+                required: true
+                schema:
+                    type: string
+    /api/user:
+        get:
+            summary: ''
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+    /:
+        get:
+            summary: ''
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        text/plain:
+                            schema:
+                                type: string
+                                example: hello
+            tags:
+                - Endpoints
+            security: []
