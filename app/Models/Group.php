@@ -5,17 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Course extends Model
+class Group extends Model
 {
     use HasFactory;
 
-    public function exercises()
-    {
-        return $this->belongsToMany(Exercise::class);
-    }
-
     public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class)->withPivot('is_teacher');
     }
 }

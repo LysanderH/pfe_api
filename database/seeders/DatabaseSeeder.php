@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Course;
+use App\Models\Exercise;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,7 +16,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        $this->call(UserSeeder::class);
         $this->call(TacticSeeder::class);
+        $this->call(UserSeeder::class);
+
+        $courses = Course::with('users')->get();
+
+        foreach ($courses as $course) {
+            $exercises = Exercise::factory()->count(8)->create(['user_id' => $course->user_id]);
+            foreach ($exercises as $exercise) {
+                $exercise->courses()->attach($course->id);
+            }
+        }
     }
 }
