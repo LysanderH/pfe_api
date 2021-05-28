@@ -1,5 +1,7 @@
 <?php
 
+use App\Events\UserConnectedToRoom;
+use App\Models\Room;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    UserConnectedToRoom::dispatch(Room::find(77));
+    return  'hello';
 });

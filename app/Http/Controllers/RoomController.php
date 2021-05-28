@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserConnectedToRoom;
+use App\Mail\CourseStarted;
+use App\Models\Group;
 use App\Models\Room;
+use Illuminate\Broadcasting\BroadcastEvent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class RoomController extends Controller
 {
@@ -14,7 +19,6 @@ class RoomController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -35,7 +39,29 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'offerer' => 'required|json',
+            'group' => 'required'
+        ]);
+
+        info($validated);
+
+        $room = Room::create([
+            'offerer' => $validated['offerer']
+        ]);
+
+        // Envoyer les mails aux étudiants
+        $users = Group::with('users')->find($validated['group']);
+        info($users->users);
+
+
+        foreach ($users->users as $user) {
+            Mail::to($user['email'])->cc('lysander.hans@hotmail.com')->send(new CourseStarted($room->id));
+        }
+
+        UserConnectedToRoom::dispatch($room);
+
+        return response()->json(['room' => $room]);
     }
 
     /**
@@ -81,5 +107,10 @@ class RoomController extends Controller
     public function destroy(Room $room)
     {
         //
+    }
+
+    public function connect(Request $request, Room $room)
+    {
+        return 'Connected';
     }
 }

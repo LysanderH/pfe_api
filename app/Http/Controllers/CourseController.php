@@ -12,9 +12,13 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $courses = Course::with('users')->whereHas('users', function ($q) use ($request) {
+            $q->where('id', $request->user()->id);
+        });
+
+        return response()->json(['courses' => $courses]);
     }
 
     /**
