@@ -17,7 +17,6 @@ class CreateExercisesTable extends Migration
             $table->id();
             $table->text('title');
             $table->longText('description');
-            $table->integer('difficulty');
             $table->json('content');
             $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
