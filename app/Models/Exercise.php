@@ -13,6 +13,12 @@ class Exercise extends Model
         'content' => 'json',
     ];
 
+    public $fillable = [
+        'title',
+        'content',
+        'user_id'
+    ];
+
     public function courses()
     {
         return $this->belongsToMany(Course::class);
