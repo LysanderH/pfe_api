@@ -9,6 +9,12 @@ class Course extends Model
 {
     use HasFactory;
 
+    public $fillable = [
+        'title',
+        'description',
+        'user_id'
+    ];
+
     public function exercises()
     {
         return $this->belongsToMany(Exercise::class);
