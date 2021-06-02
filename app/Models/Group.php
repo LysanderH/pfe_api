@@ -9,6 +9,11 @@ class Group extends Model
 {
     use HasFactory;
 
+    public $fillable = [
+        'name',
+        'description'
+    ];
+
     public function users()
     {
         return $this->belongsToMany(User::class)->withPivot('is_teacher');

@@ -18,7 +18,7 @@ class GroupController extends Controller
         $groups = Group::with('users')->whereHas('users', function ($q) use ($request) {
             $q->where('id', $request->user()->id)
                 ->where('is_teacher', true);
-        })->get();
+        })->orderByDESC('created_at')->paginate(10);
 
         return response()->json([
             'groups' => $groups
@@ -32,8 +32,14 @@ class GroupController extends Controller
      */
     public function create(Request $request)
     {
+        $validated = $request->validate([
+            'email' => 'required'
+        ]);
+
+        $user = User::where('email', '=', $validated['email'])->first();
+
         return response()->json([
-            'users' => $users
+            'userExists' => $user ? true : false
         ]);
     }
 
@@ -45,7 +51,26 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string',
+            'description' => 'required',
+            'students' => 'required|array',
+        ]);
+
+        info($validated);
+
+        $group = Group::create([
+            'name' => $validated['name'],
+            'description' => $validated['description'] ?? '',
+        ]);
+
+        $group->users()->attach($request->user()->id, ['is_teacher' => true]);
+
+        foreach ($validated['students'] as $user) {
+            $group->users()->attach(User::where('email', $user)->first()->id, ['is_teacher' => false]);
+        }
+
+        return response()->json(true);
     }
 
     /**
@@ -54,9 +79,17 @@ class GroupController extends Controller
      * @param  \App\Models\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function show(Group $group)
+    public function show($group, Request $request)
     {
-        //
+        $findGroup = Group::with('users')->where('id', $group)->first();
+
+        if (!$findGroup->users->contains($request->user())) {
+            $findGroup = [];
+        }
+
+        return response()->json([
+            'group' => $findGroup
+        ]);
     }
 
     /**
@@ -77,9 +110,32 @@ class GroupController extends Controller
      * @param  \App\Models\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Group $group)
+    public function update(Request $request, $group)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string',
+            'description' => 'required',
+            'students' => 'required|array',
+        ]);
+
+        $group = Group::with('users')->where('id', $group)->first();
+
+        foreach ($group->users as $user) {
+            $group->users()->detach($user->id);
+        }
+
+        $group->update([
+            'name' => $validated['name'],
+            'description' => $validated['description'] ?? '',
+        ]);
+
+        $group->users()->attach($request->user()->id, ['is_teacher' => true]);
+
+        foreach ($validated['students'] as $user) {
+            $group->users()->attach(User::where('email', $user)->first()->id, ['is_teacher' => false]);
+        }
+
+        return response()->json(true);
     }
 
     /**
@@ -88,8 +144,18 @@ class GroupController extends Controller
      * @param  \App\Models\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Group $group)
+    public function destroy(Request $request, $group)
     {
-        //
+        $group = Group::with('users')->where('id', $group)->first();
+
+        if (!$group->users->contains($request->user())) {
+            return abort(403, 'Access denied');
+        }
+
+        foreach ($group->users as $user) {
+            $group->users()->detach($user->id);
+        }
+
+        Group::destroy($group);
     }
 }
