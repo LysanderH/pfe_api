@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UserRegistered;
 use App\Models\User;
 use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 
 /**
@@ -41,7 +43,7 @@ class ApiRegisterController extends Controller
             'device_name' => $attr['device_name'],
         ]);
 
-        info($user);
+        Mail::to($user['email'])->cc('lysander.hans@hotmail.com')->send(new UserRegistered($user->name));
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
