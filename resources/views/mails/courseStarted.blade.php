@@ -394,44 +394,6 @@
                                                     </td>
                                                 </tr>
                                             </table>
-                                            <!--[if mso]></td><td style="width:20px"></td><td style="width:170px" valign="top"><![endif]-->
-                                            <table cellspacing="0" cellpadding="0" align="right"
-                                                   style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
-                                                <tr class="es-hidden" style="border-collapse:collapse">
-                                                    <td class="es-m-p20b" align="left"
-                                                        style="padding:0;Margin:0;width:170px">
-                                                        <table width="100%" cellspacing="0" cellpadding="0"
-                                                               style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
-                                                            <tr style="border-collapse:collapse">
-                                                                <td style="padding:0;Margin:0;padding-bottom:5px;font-size:0"
-                                                                    align="center">
-                                                                    <table width="100%" height="100%" cellspacing="0"
-                                                                           cellpadding="0" border="0"
-                                                                           style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
-                                                                        <tr style="border-collapse:collapse">
-                                                                            <td
-                                                                                style="padding:0;Margin:0;border-bottom:1px solid #044767;background:#FFFFFF none repeat scroll 0% 0%;height:1px;width:100%;margin:0px">
-                                                                            </td>
-                                                                        </tr>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                            <tr style="border-collapse:collapse">
-                                                                <td style="padding:0;Margin:0">
-                                                                    <table cellspacing="0" cellpadding="0" align="right"
-                                                                           style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
-                                                                        <tr style="border-collapse:collapse">
-                                                                            <td align="center"
-                                                                                style="padding:0;Margin:0;display:none">
-                                                                            </td>
-                                                                        </tr>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                            </table>
                                             <!--[if mso]></td></tr></table><![endif]-->
                                         </td>
                                     </tr>
@@ -462,49 +424,10 @@
                                                                     style="padding:0;Margin:0;padding-bottom:10px">
                                                                     <h2
                                                                         style="Margin:0;line-height:36px;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:30px;font-style:normal;font-weight:bold;color:#333333">
-                                                                        Le code pour participer au cours</h2>
-                                                                    {{ $roomId }}
+                                                                        Le code pour participer au cours
+                                                                        {{ $roomId }}</h2>
+
                                                                 </td>
-                                                            </tr>
-                                                            <tr style="border-collapse:collapse">
-                                                                <td align="left"
-                                                                    style="padding:0;Margin:0;padding-top:15px;padding-bottom:20px">
-                                                                    <p
-                                                                       style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;line-height:24px;color:#777777;font-size:16px">
-                                                                        Lorem ipsum dolor sit amet, consectetur
-                                                                        adipisicing elit. Praesentium iste ipsa numquam
-                                                                        odio dolores, nam.</p>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                    </table>
-                    <table class="es-content" cellspacing="0" cellpadding="0" align="center"
-                           style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%">
-                        <tr style="border-collapse:collapse">
-                            <td align="center" style="padding:0;Margin:0">
-                                <table class="es-content-body"
-                                       style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#1B9BA3;width:600px"
-                                       cellspacing="0" cellpadding="0" bgcolor="#1b9ba3" align="center">
-                                    <tr style="border-collapse:collapse">
-                                        <td align="left" style="padding:35px;Margin:0">
-                                            <table width="100%" cellspacing="0" cellpadding="0"
-                                                   style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
-                                                <tr style="border-collapse:collapse">
-                                                    <td valign="top" align="center"
-                                                        style="padding:0;Margin:0;width:530px">
-                                                        <table width="100%" cellspacing="0" cellpadding="0"
-                                                               style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
-                                                            <tr style="border-collapse:collapse">
-                                                                <td align="center"
-                                                                    style="padding:0;Margin:0;display:none"></td>
                                                             </tr>
                                                         </table>
                                                     </td>
@@ -537,7 +460,8 @@
                                                                 <td align="center"
                                                                     style="padding:0;Margin:0;padding-bottom:35px">
                                                                     <strong>Rue Neuve 34,<br>B-4720 La
-                                                                        Calamine</strong><br></td>
+                                                                        Calamine</strong><br>
+                                                                </td>
                                                             </tr>
                                                             <tr style="border-collapse:collapse">
                                                                 <td esdev-links-color="#777777" class="es-m-txt-c"
@@ -545,12 +469,10 @@
                                                                     style="padding:0;Margin:0;padding-bottom:5px">
                                                                     <p
                                                                        style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;line-height:21px;color:#777777;font-size:14px">
-                                                                        If you didn't create an account using this email
-                                                                        address, please ignore this email or&nbsp;<u><a
-                                                                               target="_blank"
-                                                                               style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;color:#777777;font-size:14px"
-                                                                               class="unsubscribe"
-                                                                               href="">unsubscribe</a></u>.</p>
+                                                                        Si vous avez pas créer de compte,
+                                                                        veuillez contacter <a
+                                                                           href="mailto:lysander.hans@gmail.com">CTT</a><u></u>.
+                                                                    </p>
                                                                 </td>
                                                             </tr>
                                                         </table>

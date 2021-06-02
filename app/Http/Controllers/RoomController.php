@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\UserConnectedToRoom;
 use App\Mail\CourseStarted;
+use App\Models\Course;
 use App\Models\Group;
 use App\Models\Room;
 use Illuminate\Broadcasting\BroadcastEvent;
@@ -41,10 +42,12 @@ class RoomController extends Controller
     {
         $validated = $request->validate([
             'offerer' => 'required|json',
-            'group' => 'required'
+            'group' => 'required',
+            'lesson' => 'required',
         ]);
 
         info($validated);
+        $connectedUser = $request->user();
 
         $room = Room::create([
             'offerer' => $validated['offerer']
@@ -54,14 +57,20 @@ class RoomController extends Controller
         $users = Group::with('users')->find($validated['group']);
         info($users->users);
 
+        // todo réactiver
+        // foreach ($users->users as $user) {
+        //     Mail::to($user['email'])->cc('lysander.hans@hotmail.com')->send(new CourseStarted($room->id));
+        // }
 
-        foreach ($users->users as $user) {
-            Mail::to($user['email'])->cc('lysander.hans@hotmail.com')->send(new CourseStarted($room->id));
-        }
+        $exercises = Course::with('exercises')->where('id', $validated['lesson'])->first()->exercises;
+        info($exercises);
+        // UserConnectedToRoom::dispatch($room);
 
-        UserConnectedToRoom::dispatch($room);
-
-        return response()->json(['room' => $room]);
+        return response()->json([
+            'room' => $room,
+            'user' => $connectedUser,
+            'exercises' => $exercises
+        ]);
     }
 
     /**
