@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Course;
 use App\Models\Exercise;
+use App\Models\Tactic;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -25,6 +26,7 @@ class DatabaseSeeder extends Seeder
             $exercises = Exercise::factory()->count(8)->create(['user_id' => $course->user_id]);
             foreach ($exercises as $exercise) {
                 $exercise->courses()->attach($course->id);
+                $exercise->tactics()->attach(Tactic::all()->random()->id);
             }
         }
     }

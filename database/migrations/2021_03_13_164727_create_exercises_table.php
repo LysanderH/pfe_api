@@ -16,7 +16,6 @@ class CreateExercisesTable extends Migration
         Schema::create('exercises', function (Blueprint $table) {
             $table->id();
             $table->text('title');
-            $table->longText('description');
             $table->json('content');
             $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
