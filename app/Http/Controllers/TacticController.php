@@ -8,13 +8,15 @@ use Illuminate\Http\Request;
 class TacticController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Returns all Tactics
      *
-     * @return \Illuminate\Http\Response
+     * @response {}
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $tactics = Tactic::all();
+        $connectedUser = $request->user();
+        return response()->json(['tactics' => $tactics, 'user' => $connectedUser]);
     }
 
     /**
