@@ -1,6 +1,7 @@
 <?php
 
 use App\Events\UserConnectedToRoom;
+use App\Http\Controllers\ResetPasswordController;
 use App\Models\Room;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,6 @@ Route::get('/', function () {
     UserConnectedToRoom::dispatch(Room::find(77));
     return  'hello';
 });
+
+Route::get('reset-password/{token}', [ResetPasswordController::class, 'checkToken']);
+Route::post('store-password/', [ResetPasswordController::class, 'updateUser'])->name('newpassword');
