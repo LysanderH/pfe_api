@@ -47,24 +47,21 @@ class RoomController extends Controller
         ]);
 
         info($validated);
+
         $connectedUser = $request->user();
 
         $room = Room::create([
             'offerer' => $validated['offerer']
         ]);
 
-        // Envoyer les mails aux étudiants
         $users = Group::with('users')->find($validated['group']);
-        info($users->users);
 
-        // todo réactiver
-        // foreach ($users->users as $user) {
-        //     Mail::to($user['email'])->cc('lysander.hans@hotmail.com')->send(new CourseStarted($room->id));
-        // }
+        foreach ($users->users as $user) {
+            Mail::to($user['email'])->cc('lysander.hans@hotmail.com')->send(new CourseStarted($room->id));
+            $room->users()->attach($user->id);
+        }
 
         $exercises = Course::with('exercises')->where('id', $validated['lesson'])->first()->exercises;
-        info($exercises);
-        // UserConnectedToRoom::dispatch($room);
 
         return response()->json([
             'room' => $room,
@@ -118,8 +115,20 @@ class RoomController extends Controller
         //
     }
 
-    public function connect(Request $request, Room $room)
+    public function canConnect(Request $request, $room)
     {
-        return 'Connected';
+        $room = Room::with('users')->where('id', $room)->first();
+
+        foreach ($room->users as $user) {
+            if ($user->id === $request->user()->id) {
+                return response()->json([
+                    'message' => 'Vous pouvez continuer',
+                ]);
+            }
+        }
+
+        return response()->json([
+            'message' => 'Vous n’avez pas la permission de vous connecter'
+        ], 503);
     }
 }

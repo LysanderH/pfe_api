@@ -12,4 +12,9 @@ class Room extends Model
     protected $fillable = [
         'offerer'
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

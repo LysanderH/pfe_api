@@ -1,11 +1,13 @@
 <?php
 
+use App\Events\BoardPosition;
 use App\Http\Controllers\ApiExercisesController;
 use App\Http\Controllers\ApiLoginController;
 use App\Http\Controllers\ApiRegisterController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\TacticController;
 use App\Http\Controllers\UpdateUser;
@@ -37,9 +39,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('courses', CourseController::class);
     Route::resource('rooms', RoomController::class);
     Route::resource('tactics', TacticController::class);
-    Route::get('/rooms/connect/{id}', [RoomController::class, 'connect']);
+    Route::get('/rooms/connect/{id}', [RoomController::class, 'canConnect']);
     Route::put('users/{id}', [UpdateUser::class, 'update']);
     Route::get('video-conference', [VideoConference::class, 'information']);
+
     // Route::get('start-conference', function (Request $request) {
     //     $courses = User::with('groups', 'courses')->where('id', $request->user()->id)->get();
     //     return response()->json(['courses' => $courses]);
@@ -53,3 +56,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('sanctum/register', [ApiRegisterController::class, 'register']);
 
 Route::post('sanctum/login', [ApiLoginController::class, 'login']);
+
+Route::post('forgot-password', [ResetPasswordController::class, 'checkEmail']);

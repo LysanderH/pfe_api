@@ -56,4 +56,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Group::class)->withPivot('is_teacher');
     }
+
+    public function rooms()
+    {
+        return $this->belongsToMany(Room::class);
+    }
 }
