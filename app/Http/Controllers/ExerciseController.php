@@ -88,7 +88,7 @@ class ExerciseController extends Controller
 
         $findExercise = Exercise::with('users', 'tactics')->where('id', $exercise)->first();
         info($findExercise);
-        if ($request->user()->id !== $findExercise->user_id) {
+        if ((int) $request->user()->id !== (int) $findExercise->user_id) {
             $findExercise = [];
         }
 
@@ -155,12 +155,16 @@ class ExerciseController extends Controller
     {
         $getExercise = Exercise::with('tactics')->where('id', $exercise)->first();
 
-        if ($request->user()->id !== $getExercise->user_id) {
+        if ((int) $request->user()->id !== (int) $getExercise->user_id) {
             return abort(403, 'Access denied');
         }
 
         foreach ($getExercise->tactics as $tactic) {
             $getExercise->tactics()->detach($tactic->id);
+        }
+
+        foreach ($getExercise->courses as $courses) {
+            $getExercise->courses()->detach($courses->id);
         }
 
         Exercise::destroy($exercise);

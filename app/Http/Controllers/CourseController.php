@@ -68,7 +68,7 @@ class CourseController extends Controller
     {
         $findCourse = Course::with('exercises')->where('id', $course)->first();
 
-        if ($request->user()->id !== $findCourse->user_id) {
+        if ((int) $request->user()->id !== (int) $findCourse->user_id) {
             return response()->json([
                 'message' => 'Cet exercice ne vous appartient pas'
             ], 503);
@@ -109,7 +109,7 @@ class CourseController extends Controller
 
         $findCourse = Course::with('exercises')->where('id', $course)->first();
 
-        if ($request->user()->id !== $findCourse->user_id) {
+        if ((int) $request->user()->id !== (int) $findCourse->user_id) {
             return response()->json([
                 'message' => 'Cet exercice ne vous appartient pas'
             ], 503);
@@ -144,7 +144,7 @@ class CourseController extends Controller
         $findCourse = Course::with('exercises')->where('id', $course)->first();
 
 
-        if ($request->user()->id !== $findCourse->user_id) {
+        if ((int) $request->user()->id !== (int) $findCourse->user_id) {
             return response()->json([
                 'message' => 'Cet exercice ne vous appartient pas'
             ], 503);

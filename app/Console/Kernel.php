@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->call(function () {
-            $rooms = Room::with('users')->where('created_at', '<', Carbon::now()->subHours(1))->get();
+            $rooms = Room::with('users')->where('created_at', '<', Carbon::now()->subHours(10))->get();
             foreach ($rooms as $room) {
                 foreach ($room->users as $user) {
                     $room->users()->detach($user->id);

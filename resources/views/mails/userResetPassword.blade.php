@@ -432,7 +432,7 @@
                                                                 <td align="center"
                                                                     style="padding:0;Margin:0;padding-bottom:10px">
                                                                     <a
-                                                                       href="https://api.lysander-hans.com/reset-password/{{ $token }}">Créer
+                                                                       href="{{ route('pwd-reset', ['token' => $token]) }}">Créer
                                                                         un nouveau mot de passe</a>
                                                                 </td>
                                                             </tr>

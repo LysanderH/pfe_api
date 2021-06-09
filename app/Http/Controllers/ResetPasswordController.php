@@ -36,7 +36,7 @@ class ResetPasswordController extends Controller
             $token = \Illuminate\Support\Str::random(10);
         }
 
-        Mail::to($email)->cc('lysander.hans@hotmail.com')->send(new ForgotPassword($token));
+        Mail::to($email)->send(new ForgotPassword($token));
 
         DB::table('password_resets')->insert(compact('email', 'token'));
 

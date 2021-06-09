@@ -22,14 +22,12 @@ class UpdateUser extends Controller
      */
     public function update(Request $request)
     {
-        info($request);
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string',
             'password' => 'required',
             'newpassword' => 'string|confirmed|nullable',
         ]);
-        info($validated);
 
         $user = User::find($request->user()->id);
 

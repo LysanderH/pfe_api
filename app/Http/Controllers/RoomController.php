@@ -46,8 +46,6 @@ class RoomController extends Controller
             'lesson' => 'required',
         ]);
 
-        info($validated);
-
         $connectedUser = $request->user();
 
         $room = Room::create([

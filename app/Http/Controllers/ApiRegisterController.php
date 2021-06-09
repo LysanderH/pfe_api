@@ -43,7 +43,7 @@ class ApiRegisterController extends Controller
             'device_name' => $attr['device_name'],
         ]);
 
-        Mail::to($user['email'])->cc('lysander.hans@hotmail.com')->send(new UserRegistered($user->name));
+        Mail::to($user['email'])->send(new UserRegistered($user->name));
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
