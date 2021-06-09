@@ -34,7 +34,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('/auth/logout', [ApiLoginController::class, 'logout']);
     Route::resource('exercises', ExerciseController::class);
-    // Route::post('exercises', [ExerciseController::class, 'store']);
     Route::resource('groups', GroupController::class);
     Route::resource('courses', CourseController::class);
     Route::resource('rooms', RoomController::class);
@@ -42,11 +41,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/rooms/connect/{id}', [RoomController::class, 'canConnect']);
     Route::put('users/{id}', [UpdateUser::class, 'update']);
     Route::get('video-conference', [VideoConference::class, 'information']);
-
-    // Route::get('start-conference', function (Request $request) {
-    //     $courses = User::with('groups', 'courses')->where('id', $request->user()->id)->get();
-    //     return response()->json(['courses' => $courses]);
-    // });
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

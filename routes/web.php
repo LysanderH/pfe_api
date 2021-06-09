@@ -17,9 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    UserConnectedToRoom::dispatch(Room::find(77));
-    return  'hello';
+    return view('welcome');
 });
 
-Route::get('reset-password/{token}', [ResetPasswordController::class, 'checkToken']);
+Route::get('reset-password/{token}', [ResetPasswordController::class, 'checkToken'])->name('pwd-reset');
 Route::post('store-password/', [ResetPasswordController::class, 'updateUser'])->name('newpassword');
