@@ -459,8 +459,8 @@
                                                             <tr style="border-collapse:collapse">
                                                                 <td align="center"
                                                                     style="padding:0;Margin:0;padding-bottom:35px">
-                                                                    <strong>Rue Neuve 34,<br>B-4720 La
-                                                                        Calamine</strong><br>
+                                                                    <a href="https://youtu.be/TTv9bFtcq98">Voir les
+                                                                        tutoriels</a>
                                                                 </td>
                                                             </tr>
                                                             <tr style="border-collapse:collapse">

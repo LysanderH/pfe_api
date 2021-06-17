@@ -55,7 +55,7 @@
     <header class="header-s">
         <h1 class="header-s__heading">Chess Teaching Tool</h1>
     </header>
-    <h1 class="heading">Réinitialiser le mot de passe</h1>
+    <p class="heading">Réinitialiser le mot de passe</p>
     <form action={{ route('newpassword') }} method="POST">
         @if (session('success'))
             <div class="alert alert-success">

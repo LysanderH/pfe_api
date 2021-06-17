@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/mentions-legales', function () {
+    return view('legal');
+});
 
 Route::get('reset-password/{token}', [ResetPasswordController::class, 'checkToken'])->name('pwd-reset');
 Route::post('store-password/', [ResetPasswordController::class, 'updateUser'])->name('newpassword');

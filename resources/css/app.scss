@@ -583,11 +583,43 @@ $btn-hover: #03745d;
 .header-s {
     background: #232A34;
 
-    &__heading {
+    &__heading,
+    a {
         font-family: 'Open Sans', sans-serif;
         font-size: 2rem;
         color: #fff;
         font-weight: 900;
         padding: 1.2rem;
+    }
+}
+
+.legal {
+    max-width: 800px;
+    margin: auto;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.5;
+    padding-bottom: 1.5rem;
+
+    h2 {
+        font-size: 2rem;
+        margin-top: 1.7rem;
+    }
+
+    h3 {
+        font-size: 1.6rem;
+        margin-top: 1.5rem;
+    }
+
+}
+
+.appart {
+    background-color: #000;
+    text-align: center;
+
+    a {
+        color: #fff;
+        padding: .6rem;
+        display: inline-block;
+        font-size: 10px;
     }
 }
